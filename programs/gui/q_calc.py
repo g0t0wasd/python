@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-__author__ = "Dmitriy Krasota aka wasd"
+__author__ = "Dmitriy Krasota aka g0t0wasd"
 
 # An example of Quadratic Calc 
 # using Tkinter.               
