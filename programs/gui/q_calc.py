@@ -1,8 +1,17 @@
+#!/usr/bin/env python
+
+__author__ = "Dmitriy Krasota aka wasd"
+
+# An example of Quadratic Calc 
+# using Tkinter.               
+# More at http://pythonicway.com/index.php/python-examples/python-gui-examples/14-python-tkinter-quadratic-equations
+
+
 from Tkinter import *
 from math import sqrt
 
 def solver(a,b,c):
-    """ Solves quadratic eqution and returns the result """
+    """ Solves quadratic equation and returns the result in formatted string """
     D = b*b - 4*a*c
     if D >= 0:
         x1 = (-b + sqrt(D)) / (2*a)
