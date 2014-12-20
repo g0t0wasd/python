@@ -2,8 +2,7 @@
 
 __author__ = "Dmitriy Krasota aka g0t0wasd"
 
-# An example of Quadratic Calc 
-# using Tkinter.               
+# An example of Quadratic Calc using Tkinter.               
 # More at http://pythonicway.com/index.php/python-examples/python-gui-examples/14-python-tkinter-quadratic-equations
 
 
