@@ -31,7 +31,7 @@ def clear(event):
     caller.delete("0", "end")
 
 def handler():
-    """ Get the content of entrys and passes result to the text """
+    """ Get the content of entries and passes result to the text """
     try:
         # make sure that we entered correct values
         a_val = float(a.get())
