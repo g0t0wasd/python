@@ -1,3 +1,11 @@
+#!/usr/bin/env python
+
+__author__ = "Dmitriy Krasota aka g0t0wasd"
+
+# Minesweeper in Python using Tkinter.               
+# More at http://pythonicway.com/python-games/python-arcade/31-python-minesweep
+
+
 from tkinter import *
 import random
 
