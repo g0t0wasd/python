@@ -5,14 +5,16 @@ Examples of programs written in Python.
 Sources for http://pythonicway.com/
 
 Contents: 
-1.Arcade games:
-	(i)Pong game
-	(ii)Snake Game
-	(iii)Minesweeper
+
+1. Arcade games:
+
+   - Pong game
+   - Snake Game
+   - Minesweeper
 
 2.Terminal Games:
-   (i)XO game
+   - XO game
  
 3.GUI programs:
-   (i)Quadratic Calc using Tkinter
-   (ii)Simple Paint-like application in Python with Tkinter
+   - Quadratic Calc using Tkinter
+   - Simple Paint-like application in Python with Tkinter
