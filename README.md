@@ -6,8 +6,7 @@ Sources for http://pythonicway.com/
 
 Contents: 
 
-1. Arcade games:
-
+1.Arcade games:
    - Pong game
    - Snake Game
    - Minesweeper
