@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Tk, Canvas
 import random
 
 # Globals
@@ -42,10 +42,8 @@ def main():
         root.after(100, main)
     # Not IN_GAME -> stop game and print message
     else:
-        c.create_text(WIDTH/2, HEIGHT/2,
-                      text="GAME OVER!",
-                      font="Arial 20",
-                      fill="red")
+        set_state(restart_text, 'normal')
+        set_state(game_over_text, 'normal')
 
 
 class Segment(object):
@@ -90,6 +88,42 @@ class Snake(object):
         if event.keysym in self.mapping:
             self.vector = self.mapping[event.keysym]
 
+    def reset_snake(self):
+        for segment in self.segments:
+            c.delete(segment.instance)
+
+
+def set_state(item, state):
+    c.itemconfigure(item, state=state)
+
+
+def clicked(event):
+    global IN_GAME
+    s.reset_snake()
+    IN_GAME = True
+    c.delete(BLOCK)
+    c.itemconfigure(restart_text, state='hidden')
+    c.itemconfigure(game_over_text, state='hidden')
+    start_game()
+
+
+def start_game():
+    global s
+    create_block()
+    s = create_snake()
+    # Reaction on keypress
+    c.bind("<KeyPress>", s.change_direction)
+    main()
+
+
+def create_snake():
+    # creating segments and snake
+    segments = [Segment(SEG_SIZE, SEG_SIZE),
+                Segment(SEG_SIZE*2, SEG_SIZE),
+                Segment(SEG_SIZE*3, SEG_SIZE)]
+    return Snake(segments)
+
+
 # Setting up window
 root = Tk()
 root.title("PythonicWay Snake")
@@ -99,14 +133,14 @@ c = Canvas(root, width=WIDTH, height=HEIGHT, bg="#003300")
 c.grid()
 # catch keypressing
 c.focus_set()
-# creating segments and snake
-segments = [Segment(SEG_SIZE, SEG_SIZE),
-            Segment(SEG_SIZE*2, SEG_SIZE),
-            Segment(SEG_SIZE*3, SEG_SIZE)]
-s = Snake(segments)
-# Reaction on keypress
-c.bind("<KeyPress>", s.change_direction)
-
-create_block()
-main()
+game_over_text = c.create_text(WIDTH/2, HEIGHT/2, text="GAME OVER!",
+                               font='Arial 20', fill='red',
+                               state='hidden')
+restart_text = c.create_text(WIDTH/2, HEIGHT-HEIGHT/3,
+                             font='Arial 30',
+                             fill='white',
+                             text="Click here to restart",
+                             state='hidden')
+c.tag_bind(restart_text, "<Button-1>", clicked)
+start_game()
 root.mainloop()
