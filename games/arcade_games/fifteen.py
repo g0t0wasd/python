@@ -86,7 +86,7 @@ def draw_board():
                               fill='#FFFFFF')
 
 
-def show_vactory_plate():
+def show_victory_plate():
     # Рисуем черный квадрат по центру поля
     c.create_rectangle(SQUARE_SIZE / 5,
                        SQUARE_SIZE * BOARD_SIZE / 2 - 10 * BOARD_SIZE,
