@@ -12,38 +12,38 @@ HEIGHT = 300
 # настройки ракеток
  
 # ширина ракетки
-PAD_W = 10
+PAD_W = 15
 # высота ракетки
-PAD_H = 100
+PAD_H = 65
  
 # настройки мяча
 # Насколько будет увеличиваться скорость мяча с каждым ударом
-BALL_SPEED_UP = 1.05
+BALL_SPEED_UP = 1.10
 # Максимальная скорость мяча
-BALL_MAX_SPEED = 40
+BALL_MAX_SPEED = 75
 # радиус мяча
-BALL_RADIUS = 30
+BALL_RADIUS = 35
 
-INITIAL_SPEED = 20
+INITIAL_SPEED = 35
 BALL_X_SPEED = INITIAL_SPEED
 BALL_Y_SPEED = INITIAL_SPEED
 
 # Счет игроков
-PLAYER_1_SCORE = 0
-PLAYER_2_SCORE = 0
+RED_SCORE = 0
+BLUE_SCORE = 0
 
 # Добавим глобальную переменную отвечающую за расстояние
 # до правого края игрового поля
 right_line_distance = WIDTH - PAD_W
 
 def update_score(player):
-    global PLAYER_1_SCORE, PLAYER_2_SCORE
+    global RED_SCORE, BLUE_SCORE
     if player == "right":
-        PLAYER_1_SCORE += 1
-        c.itemconfig(p_1_text, text=PLAYER_1_SCORE)
+        RED_SCORE += 1
+        c.itemconfig(red_text, text=RED_SCORE)
     else:
-        PLAYER_2_SCORE += 1
-        c.itemconfig(p_2_text, text=PLAYER_2_SCORE)
+        BLUE_SCORE += 1
+        c.itemconfig(blue_text, text=BLUE_SCORE)
  
 def spawn_ball():
     global BALL_X_SPEED
@@ -61,7 +61,7 @@ def bounce(action):
     global BALL_X_SPEED, BALL_Y_SPEED
     # ударили ракеткой
     if action == "strike":
-        BALL_Y_SPEED = random.randrange(-10, 10)
+        BALL_Y_SPEED = random.randrange(-5, 30)
         if abs(BALL_X_SPEED) < BALL_MAX_SPEED:
             BALL_X_SPEED *= -BALL_SPEED_UP
         else:
@@ -71,10 +71,10 @@ def bounce(action):
 
 # устанавливаем окно
 root = Tk()
-root.title("PythonicWay Pong")
+root.title("PING-PONG")
  
 # область анимации
-c = Canvas(root, width=WIDTH, height=HEIGHT, background="#003300")
+c = Canvas(root, width=WIDTH, height=HEIGHT, background="#808000")
 c.pack()
  
 # элементы игрового поля
@@ -102,19 +102,19 @@ RIGHT_PAD = c.create_line(WIDTH-PAD_W/2, 0, WIDTH-PAD_W/2,
                           PAD_H, width=PAD_W, fill="yellow")
 
 
-p_1_text = c.create_text(WIDTH-WIDTH/6, PAD_H/4,
-                         text=PLAYER_1_SCORE,
+red_text = c.create_text(WIDTH-WIDTH/6, PAD_H/4,
+                         text=RED_SCORE,
                          font="Arial 20",
-                         fill="white")
+                         fill="black")
  
-p_2_text = c.create_text(WIDTH/6, PAD_H/4,
-                          text=PLAYER_2_SCORE,
+blue_text = c.create_text(WIDTH/6, PAD_H/4,
+                          text=BLUE_SCORE,
                           font="Arial 20",
-                          fill="white")
+                          fill="black")
 
 # добавим глобальные переменные для скорости движения мяча
 # по горизонтали
-BALL_X_CHANGE = 20
+BALL_X_CHANGE = 25
 # по вертикали
 BALL_Y_CHANGE = 0
  
@@ -161,7 +161,7 @@ def move_ball():
 
 # зададим глобальные переменные скорости движения ракеток
 # скорось с которой будут ездить ракетки
-PAD_SPEED = 20
+PAD_SPEED = 15
 # скорость левой платформы
 LEFT_PAD_SPEED = 0
 # скорость правой ракетки
@@ -199,9 +199,9 @@ def movement_handler(event):
         LEFT_PAD_SPEED = -PAD_SPEED
     elif event.keysym == "s":
         LEFT_PAD_SPEED = PAD_SPEED
-    elif event.keysym == "Up":
+    elif event.keysym == "i":
         RIGHT_PAD_SPEED = -PAD_SPEED
-    elif event.keysym == "Down":
+    elif event.keysym == "k":
         RIGHT_PAD_SPEED = PAD_SPEED
  
 # Привяжем к Canvas эту функцию
@@ -212,7 +212,7 @@ def stop_pad(event):
     global LEFT_PAD_SPEED, RIGHT_PAD_SPEED
     if event.keysym in "ws":
         LEFT_PAD_SPEED = 0
-    elif event.keysym in ("Up", "Down"):
+    elif event.keysym in ("i", "k"):
         RIGHT_PAD_SPEED = 0
  
 # Привяжем к Canvas эту функцию
