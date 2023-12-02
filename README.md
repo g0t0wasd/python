@@ -13,6 +13,7 @@ Contents:
 
 2.Terminal Games:
    - XO game
+   - Startship game
  
 3.GUI programs:
    - Quadratic Calc using Tkinter
